@@ -1,126 +1,37 @@
-organization: "705794940895"
-folders:
-  - name: "spgi-root"
-    tags:
-      org: spglobal
-    sub_folders:
-      - name: "spgi-business-units"
-        sub_folders:
-          # ---------------------------------------------------------
-          # PRODUCTION ENVIRONMENT
-          # ---------------------------------------------------------
-          - name: &env_prod "prod"
-            enable_gcp_groups: true
-            tags:
-              environment: *env_prod
-            sub_folders:
-              - name: "spgi-corp"
-                bu_short_name: "corp"
-                sub_folders: &bu_standard_subs
-                  - name: "vertex-ai"
-              - name: "spgi-s1"
-                bu_short_name: "s1"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-ratings"
-                bu_short_name: "ratings"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-kensho"
-                bu_short_name: "kensho"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-spdji"
-                bu_short_name: "spdji"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-edo"
-                bu_short_name: "edo"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-ci"
-                bu_short_name: "ci"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-mob"
-                bu_short_name: "mob"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-mi"
-                bu_short_name: "mi"
-                sub_folders: *bu_standard_subs
-
-          # ---------------------------------------------------------
-          # NON-PROD ENVIRONMENT
-          # ---------------------------------------------------------
-          - name: &env_nprod "nonprod"
-            tags:
-              environment: *env_nprod
-            sub_folders:
-              - name: "spgi-corp"
-                bu_short_name: "corp"
-                sub_folders:
-                  - name: "vertex-ai"
-                  - name: "dts-nonprod-lodestone" 
-                  - name: "dts-nonprod-1" 
-              - name: "spgi-mob"
-                bu_short_name: "mob"
-                sub_folders:
-                  - name: "vertex-ai"
-                  - name: "market-scan" 
-                  - name: "carfax" 
-              - name: "spgi-s1"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-ratings"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-kensho"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-spdji"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-edo"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-ci"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-mi"
-                sub_folders: *bu_standard_subs
-
-          # ---------------------------------------------------------
-          # POC ENVIRONMENT
-          # ---------------------------------------------------------
-          - name: "poc" 
-            tags:
-              environment: poc
-            sub_folders:
-              - name: "spgi-corp"
-                bu_short_name: "corp"
-                sub_folders:
-                  - name: "vertex-ai"
-                  - name: "general-folder"
-                  - name: "dts-poc-1"
-                  - name: "dts-poc-2"
-              - name: "spgi-mob"
-                bu_short_name: "mob"
-                sub_folders:
-                  - name: "vertex-ai"
-                  - name: "general-folder"
-                  - name: "spgi-mob"
-                  - name: "carfax"
-              - name: "spgi-s1"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-ratings"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-kensho"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-spdji"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-edo"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-ci"
-                sub_folders: *bu_standard_subs
-              - name: "spgi-mi"
-                sub_folders: *bu_standard_subs
-
-      # ---------------------------------------------------------
-      # SHARED SERVICES (ESS)
-      # ---------------------------------------------------------
-      - name: "spgi-ess" 
-        sub_folders:
-          - name: "prod" 
-            sub_folders:
-              - name: "shared-network" 
-          - name: "nonprod" 
-            sub_folders:
-              - name: "shared-network" 
+module.folder_hierarchy.google_folder.folder_l1["spgi-root"]
+module.folder_hierarchy.google_folder.folder_l2["spgi-root/spgi-business-units"]
+module.folder_hierarchy.google_folder.folder_l2["spgi-root/spgi-ess"]
+module.folder_hierarchy.google_folder.folder_l3["spgi-root/spgi-business-units/nonprod"]
+module.folder_hierarchy.google_folder.folder_l3["spgi-root/spgi-business-units/poc"]
+module.folder_hierarchy.google_folder.folder_l3["spgi-root/spgi-business-units/prod"]
+module.folder_hierarchy.google_folder.folder_l3["spgi-root/spgi-ess/nonprod"]
+module.folder_hierarchy.google_folder.folder_l3["spgi-root/spgi-ess/prod"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-ci"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-corp"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-edo"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-kensho"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-mi"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-mob"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-ratings"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-s1"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/nonprod/spgi-spdji"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-ci"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-corp"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-edo"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-kensho"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-mi"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-mob"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-ratings"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-s1"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/poc/spgi-spdji"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-ci"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-corp"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-edo"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-kensho"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-mi"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-mob"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-ratings"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-s1"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-business-units/prod/spgi-spdji"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-ess/nonprod/shared-network"]
+module.folder_hierarchy.google_folder.folder_l4["spgi-root/spgi-ess/prod/shared-network"]
