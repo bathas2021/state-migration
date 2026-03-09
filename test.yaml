@@ -1,3 +1,4 @@
-module.org.google_tags_tag_value_iam_binding.default["Environment/nonprod:roles/resourcemanager.tagViewer"]
-module.org.google_tags_tag_value_iam_binding.default["Environment/poc:roles/resourcemanager.tagViewer"]
-module.org.google_tags_tag_value_iam_binding.default["Environment/prod:roles/resourcemanager.tagViewer"]
+module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group.group
+module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["spgi-sa-iac@prj-billing-sa.iam.gserviceaccount.com"]
+module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group.group
+module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["spgi-sa-iac@prj-billing-sa.iam.gserviceaccount.com"]
