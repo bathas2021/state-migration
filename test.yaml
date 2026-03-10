@@ -1,4 +1,2 @@
-module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group.group
-module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["spgi-sa-iac@prj-billing-sa.iam.gserviceaccount.com"]
-module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group.group
-module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["spgi-sa-iac@prj-billing-sa.iam.gserviceaccount.com"]
+ module.org_policies.google_org_policy_policy.default["iam.automaticIamGrantsForDefaultServiceAccounts"]
+ module.org_policies.google_org_policy_custom_constraint.constraint["custom.sqlflagshardening"]
