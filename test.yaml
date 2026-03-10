@@ -1,2 +1,895 @@
- module.org_policies.google_org_policy_policy.default["iam.automaticIamGrantsForDefaultServiceAccounts"]
- module.org_policies.google_org_policy_custom_constraint.constraint["custom.sqlflagshardening"]
+Terraform will perform the following actions:
+
+  # module.gcp_groups["nonprod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@n-mi-data-xf-pmi.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/036ei31r3za8jlv"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@n-mi-data-xf-pmi.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@n-mi-mobi-auto-insight.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/036ei31r3za8jlv"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@n-mi-mobi-auto-insight.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@n-mi-pc-fdatalinking-backend.iam.gserviceaccount.com"] will be created   
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/036ei31r3za8jlv"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@n-mi-pc-fdatalinking-backend.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@n-mi-pc-foundational.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/036ei31r3za8jlv"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@n-mi-pc-foundational.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@n-mi-pc-m-n6-shared.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/036ei31r3za8jlv"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@n-mi-pc-m-n6-shared.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@n-mi-rass-fig.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/036ei31r3za8jlv"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@n-mi-rass-fig.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@n-spgi-fb-shared-34a0-j4.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/036ei31r3za8jlv"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@n-spgi-fb-shared-34a0-j4.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@n-mi-data-xf-pmi.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/014ykbeg1ajbk3f"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@n-mi-data-xf-pmi.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@n-mi-mobi-auto-insight.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/014ykbeg1ajbk3f"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@n-mi-mobi-auto-insight.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@n-mi-pc-fdatalinking-backend.iam.gserviceaccount.com"] will be created     
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/014ykbeg1ajbk3f"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@n-mi-pc-fdatalinking-backend.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@n-mi-pc-foundational.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/014ykbeg1ajbk3f"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@n-mi-pc-foundational.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@n-mi-pc-m-n6-shared.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/014ykbeg1ajbk3f"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@n-mi-pc-m-n6-shared.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@n-mi-rass-fig.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/014ykbeg1ajbk3f"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@n-mi-rass-fig.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["nonprod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@n-spgi-fb-shared-34a0-j4.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/014ykbeg1ajbk3f"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@n-spgi-fb-shared-34a0-j4.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-mi-data-xf-pmi-a5b1-5h.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-mi-data-xf-pmi-a5b1-5h.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-mi-mobi-auto-insight-10a1-sn.iam.gserviceaccount.com"] will be created     
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-mi-mobi-auto-insight-10a1-sn.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-mi-pc-fabric-arch-12b6-uy.iam.gserviceaccount.com"] will be created        
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-mi-pc-fabric-arch-12b6-uy.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-mi-pc-fdatalinking-993a-oo.iam.gserviceaccount.com"] will be created       
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-mi-pc-fdatalinking-993a-oo.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-mi-pc-foundational-c80e-fo.iam.gserviceaccount.com"] will be created       
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-mi-pc-foundational-c80e-fo.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-mi-pc-m-n6-qa-shared.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-mi-pc-m-n6-qa-shared.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-mi-pc-m-n6-shared.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-mi-pc-m-n6-shared.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-mi-rass-fig-2c80-jy.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-mi-rass-fig-2c80-jy.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@x-spgi-fb-shared-0d4b-ki.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/037m2jsg264l69e"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@x-spgi-fb-shared-0d4b-ki.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-mi-data-xf-pmi-a5b1-5h.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-mi-data-xf-pmi-a5b1-5h.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-mi-mobi-auto-insight-10a1-sn.iam.gserviceaccount.com"] will be created       
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-mi-mobi-auto-insight-10a1-sn.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-mi-pc-fabric-arch-12b6-uy.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-mi-pc-fabric-arch-12b6-uy.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-mi-pc-fdatalinking-993a-oo.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-mi-pc-fdatalinking-993a-oo.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-mi-pc-foundational-c80e-fo.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-mi-pc-foundational-c80e-fo.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-mi-pc-m-n6-qa-shared.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-mi-pc-m-n6-qa-shared.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-mi-pc-m-n6-shared.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-mi-pc-m-n6-shared.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-mi-rass-fig-2c80-jy.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-mi-rass-fig-2c80-jy.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["poc-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@x-spgi-fb-shared-0d4b-ki.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/02iq8gzs3tu3tjy"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@x-spgi-fb-shared-0d4b-ki.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@p-mi-data-xf-pmi.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/03ep43zb431ca8y"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@p-mi-data-xf-pmi.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@p-mi-mobi-auto-insight.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/03ep43zb431ca8y"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@p-mi-mobi-auto-insight.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@p-mi-pc-fdatalinking-backend.iam.gserviceaccount.com"] will be created      
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/03ep43zb431ca8y"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@p-mi-pc-fdatalinking-backend.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@p-mi-pc-foundational.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/03ep43zb431ca8y"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@p-mi-pc-foundational.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@p-mi-pc-m-n6-shared.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/03ep43zb431ca8y"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@p-mi-pc-m-n6-shared.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@p-mi-rass-fig.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/03ep43zb431ca8y"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@p-mi-rass-fig.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-apply-sas"].google_cloud_identity_group_membership.members["terraform-apply@p-spgi-fb-shared-dad0-e7.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/03ep43zb431ca8y"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-apply@p-spgi-fb-shared-dad0-e7.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@p-mi-data-xf-pmi.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/0147n2zr2302qu5"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@p-mi-data-xf-pmi.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@p-mi-mobi-auto-insight.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/0147n2zr2302qu5"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@p-mi-mobi-auto-insight.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@p-mi-pc-fdatalinking-backend.iam.gserviceaccount.com"] will be created        
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/0147n2zr2302qu5"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@p-mi-pc-fdatalinking-backend.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@p-mi-pc-foundational.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/0147n2zr2302qu5"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@p-mi-pc-foundational.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@p-mi-pc-m-n6-shared.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/0147n2zr2302qu5"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@p-mi-pc-m-n6-shared.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@p-mi-rass-fig.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/0147n2zr2302qu5"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@p-mi-rass-fig.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+  # module.gcp_groups["prod-terraform-plan-sas"].google_cloud_identity_group_membership.members["terraform-plan@p-spgi-fb-shared-dad0-e7.iam.gserviceaccount.com"] will be created
+  + resource "google_cloud_identity_group_membership" "members" {
+      + create_ignore_already_exists = true
+      + create_time                  = (known after apply)
+      + group                        = "groups/0147n2zr2302qu5"
+      + id                           = (known after apply)
+      + name                         = (known after apply)
+      + type                         = (known after apply)
+      + update_time                  = (known after apply)
+
+      + preferred_member_key {
+          + id = "terraform-plan@p-spgi-fb-shared-dad0-e7.iam.gserviceaccount.com"
+        }
+
+      + roles {
+          + name = "MEMBER"
+        }
+    }
+
+Plan: 46 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + groups = {
+      + nonprod-terraform-apply-sas = "nonprod-terraform-apply-sas@spglobal.com"
+      + nonprod-terraform-plan-sas  = "nonprod-terraform-plan-sas@spglobal.com"
+      + poc-terraform-apply-sas     = "poc-terraform-apply-sas@spglobal.com"
+      + poc-terraform-plan-sas      = "poc-terraform-plan-sas@spglobal.com"
+      + prod-terraform-apply-sas    = "prod-terraform-apply-sas@spglobal.com"
+      + prod-terraform-plan-sas     = "prod-terraform-plan-sas@spglobal.com"
+    }
+
+───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────── 
+
+Saved the plan to: tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "tfplan"
+Releasing state lock. This may take a few moments...
