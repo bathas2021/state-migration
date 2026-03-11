@@ -1,14 +1,1 @@
-resource "google_org_policy_custom_constraint" "constraint" {
-  provider = google-beta
-
-  for_each       = local.custom_constraints
-
-  name           = each.value.name
-  parent         = each.value.parent
-  display_name   = each.value.display_name
-  description    = each.value.description
-  action_type    = each.value.action_type
-  condition      = templatestring(each.value.condition, var.context.condition_vars)
-  method_types   = each.value.method_types
-  resource_types = each.value.resource_types
-}
+condition      = replace(templatestring(each.value.condition, var.context.condition_vars), "\r", "")
