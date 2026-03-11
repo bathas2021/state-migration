@@ -13,7 +13,14 @@ custom.sqlserversecureflagsoff:
     )
 
 
-
+module "org_policies" {
+  source          = "git::https://github.com/Digital-Technology-Services/terraform-gcp-org-policies.git?ref=v1.0.0"
+  organization_id = "organizations/292095750786"
+  factories_config = {
+    org_policies                  = "configs/org-policies/"
+    org_policy_custom_constraints = "configs/custom-constraints"
+  }
+}
   ~ resource "google_org_policy_custom_constraint" "constraint" {
       ~ condition      = <<-EOT
           - resource.databaseVersion.startsWith('SQLSERVER_') &&
