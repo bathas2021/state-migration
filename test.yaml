@@ -1,65 +1,14 @@
-custom.sqlserversecureflagsoff:
-  display_name: "sqlserverSecureFlagsOff"
-  description: "Require SQL Server flags to be explicitly disabled on Cloud SQL instances."
-  action_type: "DENY"
-  method_types: ["CREATE"]
-  resource_types: ["sqladmin.googleapis.com/Instance"]
-  condition: |-
-    resource.databaseVersion.startsWith('SQLSERVER_') &&
-    (
-      !has(resource.settings) ||
-      !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
-      !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
-    )
+resource "google_org_policy_custom_constraint" "constraint" {
+  provider = google-beta
 
+  for_each       = local.custom_constraints
 
-module "org_policies" {
-  source          = "git::https://github.com/Digital-Technology-Services/terraform-gcp-org-policies.git?ref=v1.0.0"
-  organization_id = "organizations/292095750786"
-  factories_config = {
-    org_policies                  = "configs/org-policies/"
-    org_policy_custom_constraints = "configs/custom-constraints"
-  }
+  name           = each.value.name
+  parent         = each.value.parent
+  display_name   = each.value.display_name
+  description    = each.value.description
+  action_type    = each.value.action_type
+  condition      = templatestring(each.value.condition, var.context.condition_vars)
+  method_types   = each.value.method_types
+  resource_types = each.value.resource_types
 }
-  ~ resource "google_org_policy_custom_constraint" "constraint" {
-      ~ condition      = <<-EOT
-          - resource.databaseVersion.startsWith('SQLSERVER_') &&
-          + resource.databaseVersion.startsWith('SQLSERVER_') &&
-          - (
-          + (
-          -   !has(resource.settings) ||
-          +   !has(resource.settings) ||
-          -   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
-          +   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
-          -   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
-          +   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
-            )
-        EOT
-        id             = "organizations/292095750786/customConstraints/custom.sqlserversecureflagsoff"
-        name           = "custom.sqlserversecureflagsoff"
-        # (7 unchanged attributes hidden)
-    }
-        {
-          "index_key": "custom.sqlserversecureflagsoff",
-          "schema_version": 0,
-          "attributes": {
-            "action_type": "DENY",
-            "condition": "resource.databaseVersion.startsWith('SQLSERVER_') &&\r\n(\r\n  !has(resource.settings) ||\r\n  !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||\r\n  !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')\r\n)\r\n",
-            "description": "Require SQL Server flags to be explicitly disabled on Cloud SQL instances.",
-            "display_name": "sqlserverSecureFlagsOff",
-            "id": "organizations/292095750786/customConstraints/custom.sqlserversecureflagsoff",
-            "method_types": [
-              "CREATE"
-            ],
-            "name": "custom.sqlserversecureflagsoff",
-            "parent": "organizations/292095750786",
-            "resource_types": [
-              "sqladmin.googleapis.com/Instance"
-            ],
-            "timeouts": null,
-            "update_time": "2025-10-15T11:49:55.032209Z"
-          },
-          "sensitive_attributes": [],
-          "identity_schema_version": 0,
-          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
-        },
