@@ -1,26 +1,20 @@
-  condition = <<-CEL
-    resource.databaseVersion.startsWith('SQLSERVER_') &&
-    (
-      !has(resource.settings) ||
-      !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
-      !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
-    )
-  CEL
 
-
-
-
-
-  custom.sqlserversecureflagsoff:
-  display_name: "sqlserverSecureFlagsOff"
-  description: "Require SQL Server flags to be explicitly disabled on Cloud SQL instances."
-  action_type: "DENY"
-  method_types: ["CREATE"]
-  resource_types: ["sqladmin.googleapis.com/Instance"]
-  condition: >
-    resource.databaseVersion.startsWith('SQLSERVER_') &&
-    (
-      !has(resource.settings) ||
-      !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
-      !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
-    )
+  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.sqlserversecureflagsoff"] will be updated in-place
+  ~ resource "google_org_policy_custom_constraint" "constraint" {
+      ~ condition      = <<-EOT
+          - resource.databaseVersion.startsWith('SQLSERVER_') &&
+          + resource.databaseVersion.startsWith('SQLSERVER_') &&
+          - (
+          + (
+          -   !has(resource.settings) ||
+          +   !has(resource.settings) ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
+            )
+        EOT
+        id             = "organizations/292095750786/customConstraints/custom.sqlserversecureflagsoff"
+        name           = "custom.sqlserversecureflagsoff"
+        # (7 unchanged attributes hidden)
+    }
