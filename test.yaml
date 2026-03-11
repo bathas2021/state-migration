@@ -1,25 +1,198 @@
+# Wiz:PostgreSQL-007, etc.
+custom.postgresqlrequirealldbflags:
+  display_name: "Require Cloud SQL Postgres logging flags on create"
+  description: "Prevents CREATE of Cloud SQL PostgreSQL instances unless required DB flags are set."
+  action_type: "DENY"
+  method_types: ["CREATE"]
+  resource_types: ["sqladmin.googleapis.com/Instance"]
+  condition: |
+    resource.databaseVersion.startsWith('POSTGRES_') &&
+    (
+      !has(resource.settings) ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'log_checkpoints' && f.value == 'on') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'log_connections' && f.value == 'on') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'log_disconnections' && f.value == 'on') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'log_lock_waits' && f.value == 'on') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'log_min_duration_statement' && f.value == '-1') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'log_temp_files' && f.value == '0') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'log_executor_stats' && f.value == 'off') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'log_planner_stats' && f.value == 'off')
+    )
+# Wiz:MySQL-005, CloudSQL-016
+custom.sqlflagshardening:
+  display_name: "sqlFlagsHardening"
+  description: "Require MySQL flags hardening on Cloud SQL instances (local_infile=off, skip_show_database=on)."
+  action_type: "DENY"
+  method_types: ["CREATE"]
+  resource_types: ["sqladmin.googleapis.com/Instance"]
+  condition: |
+    resource.databaseVersion.startsWith("MYSQL_") &&
+    (
+      !has(resource.settings) ||
+      !has(resource.settings.databaseFlags) ||
+      !resource.settings.databaseFlags.exists(f, f.name == "local_infile" && f.value == "off") ||
+      !resource.settings.databaseFlags.exists(f, f.name == "skip_show_database" && f.value == "on") ||
+      !resource.settings.databaseFlags.exists(f, f.name == "check_proxy_users" && f.value == "on") ||
+      !resource.settings.databaseFlags.exists(f, f.name == "disconnect_on_expired_password" && f.value == "on") ||
+      !resource.settings.databaseFlags.exists(f, f.name == "mysql_native_password_proxy_users" && f.value == "on") ||
+      !resource.settings.databaseFlags.exists(f, f.name == "default_password_lifetime" && f.value == "0")
+    )
+
+# Wiz:CloudSQL-004, CloudSQL-003
+custom.sqlserversecureflagsoff:
+  display_name: "sqlserverSecureFlagsOff"
+  description: "Require SQL Server flags to be explicitly disabled on Cloud SQL instances."
+  action_type: "DENY"
+  method_types: ["CREATE"]
+  resource_types: ["sqladmin.googleapis.com/Instance"]
+  condition: |
+    resource.databaseVersion.startsWith('SQLSERVER_') &&
+    (
+      !has(resource.settings) ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
+    )
+
+
 Terraform will perform the following actions:
 
-  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.requiredVpcDnsLogging"] will be updated in-place
+  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.cloudsqlPasswordPolicy"] will be updated in-place
   ~ resource "google_org_policy_custom_constraint" "constraint" {
       ~ condition      = <<-EOT
-            resource.enableLogging == false
+          - (resource.databaseVersion.startsWith("MYSQL") || resource.databaseVersion.startsWith("POSTGRES"))
+          + (resource.databaseVersion.startsWith("MYSQL") || resource.databaseVersion.startsWith("POSTGRES"))
+          - &&
+          + &&
+            (
+              resource.settings.passwordValidationPolicy == null
+              || resource.settings.passwordValidationPolicy.enablePasswordPolicy != true
+              || resource.settings.passwordValidationPolicy.minLength < 8
+              || resource.settings.passwordValidationPolicy.complexity != 'COMPLEXITY_DEFAULT'
+              || resource.settings.passwordValidationPolicy.disallowUsernameSubstring != true
+              || resource.settings.passwordValidationPolicy.reuseInterval < 5
+              || (
+          -        resource.databaseVersion.startsWith("POSTGRES")
+          +        resource.databaseVersion.startsWith("POSTGRES")
+                   && (
+                        !has(resource.settings.passwordValidationPolicy.passwordChangeInterval)
+                        || resource.settings.passwordValidationPolicy.passwordChangeInterval < duration("7776000s")
+                      )
+                 )
+            )
         EOT
-        id             = "organizations/292095750786/customConstraints/custom.requiredVpcDnsLogging"
-        name           = "custom.requiredVpcDnsLogging"
+        id             = "organizations/292095750786/customConstraints/custom.cloudsqlPasswordPolicy"
+        name           = "custom.cloudsqlPasswordPolicy"
         # (7 unchanged attributes hidden)
     }
 
-Plan: 0 to add, 1 to change, 0 to destroy.
+  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.postgresqlrequirealldbflags"] will be updated in-place
+  ~ resource "google_org_policy_custom_constraint" "constraint" {
+      ~ condition      = <<-EOT
+          - resource.databaseVersion.startsWith('POSTGRES_') &&
+          + resource.databaseVersion.startsWith('POSTGRES_') &&
+          - (
+          + (
+          -   !has(resource.settings) ||
+          +   !has(resource.settings) ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'log_checkpoints' && f.value == 'on') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'log_checkpoints' && f.value == 'on') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'log_connections' && f.value == 'on') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'log_connections' && f.value == 'on') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'log_disconnections' && f.value == 'on') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'log_disconnections' && f.value == 'on') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'log_lock_waits' && f.value == 'on') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'log_lock_waits' && f.value == 'on') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'log_min_duration_statement' && f.value == '-1') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'log_min_duration_statement' && f.value == '-1') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'log_temp_files' && f.value == '0') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'log_temp_files' && f.value == '0') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'log_executor_stats' && f.value == 'off') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'log_executor_stats' && f.value == 'off') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'log_planner_stats' && f.value == 'off')
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'log_planner_stats' && f.value == 'off')
+            )
+        EOT
+        id             = "organizations/292095750786/customConstraints/custom.postgresqlrequirealldbflags"
+        name           = "custom.postgresqlrequirealldbflags"
+        # (7 unchanged attributes hidden)
+    }
 
+  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.requireprivategoogleaccessV1"] will be updated in-place
+  ~ resource "google_org_policy_custom_constraint" "constraint" {
+      ~ condition      = <<-EOT
+          - resource.privateIpGoogleAccess == false
+          + resource.privateIpGoogleAccess == false
+          - && resource.stackType != "IPV6_ONLY"
+          + && resource.stackType != "IPV6_ONLY"
+          - && !(resource.purpose in [
+          + && !(resource.purpose in [
+          -   "GLOBAL_MANAGED_PROXY",
+          +   "GLOBAL_MANAGED_PROXY",
+          -   "REGIONAL_MANAGED_PROXY",
+          +   "REGIONAL_MANAGED_PROXY",
+          -   "PRIVATE_SERVICE_CONNECT",
+          +   "PRIVATE_SERVICE_CONNECT",
+          -   "INTERNAL_HTTPS_LOAD_BALANCER",
+          +   "INTERNAL_HTTPS_LOAD_BALANCER",
+          -   "PRIVATE_NAT",
+          +   "PRIVATE_NAT",
+          -   "PEER_MIGRATION"
+          +   "PEER_MIGRATION"
+            ])
+        EOT
+        id             = "organizations/292095750786/customConstraints/custom.requireprivategoogleaccessV1"
+        name           = "custom.requireprivategoogleaccessV1"
+        # (7 unchanged attributes hidden)
+    }
 
-# Wiz:VPC-045
-custom.requiredVpcDnsLogging:
-  resource_types:
-  - dns.googleapis.com/Policy
-  method_types:
-  - CREATE
-  condition: "resource.enableLogging == false\n"
-  action_type: DENY
-  display_name: requiredVpcDnsLogging
-  description: Denies CREATE of DNS Policies when VPC DNS logging is disabled.
+  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.sqlflagshardening"] will be updated in-place
+  ~ resource "google_org_policy_custom_constraint" "constraint" {
+      ~ condition      = <<-EOT
+          - resource.databaseVersion.startsWith("MYSQL_") &&
+          + resource.databaseVersion.startsWith("MYSQL_") &&
+          - (
+          + (
+          -   !has(resource.settings) ||
+          +   !has(resource.settings) ||
+          -   !has(resource.settings.databaseFlags) ||
+          +   !has(resource.settings.databaseFlags) ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == "local_infile" && f.value == "off") ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == "local_infile" && f.value == "off") ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == "skip_show_database" && f.value == "on") ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == "skip_show_database" && f.value == "on") ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == "check_proxy_users" && f.value == "on") ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == "check_proxy_users" && f.value == "on") ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == "disconnect_on_expired_password" && f.value == "on") ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == "disconnect_on_expired_password" && f.value == "on") ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == "mysql_native_password_proxy_users" && f.value == "on") ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == "mysql_native_password_proxy_users" && f.value == "on") ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == "default_password_lifetime" && f.value == "0")
+          +   !resource.settings.databaseFlags.exists(f, f.name == "default_password_lifetime" && f.value == "0")
+            )
+        EOT
+        id             = "organizations/292095750786/customConstraints/custom.sqlflagshardening"
+        name           = "custom.sqlflagshardening"
+        # (7 unchanged attributes hidden)
+    }
+
+  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.sqlserversecureflagsoff"] will be updated in-place
+  ~ resource "google_org_policy_custom_constraint" "constraint" {
+      ~ condition      = <<-EOT
+          - resource.databaseVersion.startsWith('SQLSERVER_') &&
+          + resource.databaseVersion.startsWith('SQLSERVER_') &&
+          - (
+          + (
+          -   !has(resource.settings) ||
+          +   !has(resource.settings) ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
+            )
+        EOT
+        id             = "organizations/292095750786/customConstraints/custom.sqlserversecureflagsoff"
+        name           = "custom.sqlserversecureflagsoff"
+        # (7 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 5 to change, 0 to destroy.
