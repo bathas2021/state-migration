@@ -1,19 +1,25 @@
-  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.sqlserversecureflagsoff"] will be updated in-place
+Terraform will perform the following actions:
+
+  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.requiredVpcDnsLogging"] will be updated in-place
   ~ resource "google_org_policy_custom_constraint" "constraint" {
       ~ condition      = <<-EOT
-          - resource.databaseVersion.startsWith('SQLSERVER_') &&
-          + resource.databaseVersion.startsWith('SQLSERVER_') &&
-          - (
-          + (
-          -   !has(resource.settings) ||
-          +   !has(resource.settings) ||
-          -   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
-          +   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
-          -   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
-          +   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
-            )
+            resource.enableLogging == false
         EOT
-        id             = "organizations/292095750786/customConstraints/custom.sqlserversecureflagsoff"
-        name           = "custom.sqlserversecureflagsoff"
+        id             = "organizations/292095750786/customConstraints/custom.requiredVpcDnsLogging"
+        name           = "custom.requiredVpcDnsLogging"
         # (7 unchanged attributes hidden)
     }
+
+Plan: 0 to add, 1 to change, 0 to destroy.
+
+
+# Wiz:VPC-045
+custom.requiredVpcDnsLogging:
+  resource_types:
+  - dns.googleapis.com/Policy
+  method_types:
+  - CREATE
+  condition: "resource.enableLogging == false\n"
+  action_type: DENY
+  display_name: requiredVpcDnsLogging
+  description: Denies CREATE of DNS Policies when VPC DNS logging is disabled.
