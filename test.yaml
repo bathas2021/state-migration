@@ -1,1 +1,19 @@
-"condition": "resource.databaseVersion.startsWith('SQLSERVER_') &&\n(\n  !has(resource.settings) ||\n  !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||\n  !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')\n)\n",
+  # module.org_policies.google_org_policy_custom_constraint.constraint["custom.sqlserversecureflagsoff"] will be updated in-place
+  ~ resource "google_org_policy_custom_constraint" "constraint" {
+      ~ condition      = <<-EOT
+          - resource.databaseVersion.startsWith('SQLSERVER_') &&
+          + resource.databaseVersion.startsWith('SQLSERVER_') &&
+          - (
+          + (
+          -   !has(resource.settings) ||
+          +   !has(resource.settings) ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
+          -   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
+          +   !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
+            )
+        EOT
+        id             = "organizations/292095750786/customConstraints/custom.sqlserversecureflagsoff"
+        name           = "custom.sqlserversecureflagsoff"
+        # (7 unchanged attributes hidden)
+    }
