@@ -1,1 +1,11 @@
-sed -i 's/\xC2\xA0/ /g' your_filename.yaml
+git add .gitattributes
+git commit -m "Add .gitattributes to enforce LF line endings"
+git add --renormalize .
+
+
+# .gitattributes
+* text=auto eol=lf
+*.sh text eol=lf
+*.json text eol=lf
+*.tpl text eol=lf
+*.yaml text eol=lf
