@@ -1,11 +1,58 @@
-git add .gitattributes
-git commit -m "Add .gitattributes to enforce LF line endings"
-git add --renormalize .
+# Wiz:CloudSQL-004, CloudSQL-003
+custom.sqlserversecureflagsoff:
+  display_name: "sqlserverSecureFlagsOff"
+  description: "Require SQL Server flags to be explicitly disabled on Cloud SQL instances."
+  action_type: "DENY"
+  method_types: ["CREATE"]
+  resource_types: ["sqladmin.googleapis.com/Instance"]
+  condition: |
+    resource.databaseVersion.startsWith('SQLSERVER_') &&
+    (
+      !has(resource.settings) ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||
+      !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')
+    )
 
 
-# .gitattributes
-* text=auto eol=lf
-*.sh text eol=lf
-*.json text eol=lf
-*.tpl text eol=lf
-*.yaml text eol=lf
+    {
+  "version": 4,
+  "terraform_version": "1.5.7",
+  "serial": 9,
+  "lineage": "dd881234-0a90-6fb0-e2d4-ac6ba8ed7e50",
+  "outputs": {},
+  "resources": [
+    {
+      "module": "module.org_policies",
+      "mode": "managed",
+      "type": "google_org_policy_custom_constraint",
+      "name": "constraint",
+      "provider": "provider[\"registry.terraform.io/hashicorp/google-beta\"]",
+      "instances": [
+        {
+          "index_key": "custom.sqlserversecureflagsoff",
+          "schema_version": 0,
+          "attributes": {
+            "action_type": "DENY",
+            "condition": "resource.databaseVersion.startsWith('SQLSERVER_') &&\r\n(\r\n  !has(resource.settings) ||\r\n  !resource.settings.databaseFlags.exists(f, f.name == 'contained database authentication' && f.value == 'off') ||\r\n  !resource.settings.databaseFlags.exists(f, f.name == 'cross db ownership chaining' && f.value == 'off')\r\n)\r\n",
+            "description": "Require SQL Server flags to be explicitly disabled on Cloud SQL instances.",
+            "display_name": "sqlserverSecureFlagsOff",
+            "id": "organizations/292095750786/customConstraints/custom.sqlserversecureflagsoff",
+            "method_types": [
+              "CREATE"
+            ],
+            "name": "custom.sqlserversecureflagsoff",
+            "parent": "organizations/292095750786",
+            "resource_types": [
+              "sqladmin.googleapis.com/Instance"
+            ],
+            "timeouts": null,
+            "update_time": "2025-10-15T11:49:55.032209Z"
+          },
+          "sensitive_attributes": [],
+          "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
+        }
+      ]
+    }
+  ],
+  "check_results": null
+}
