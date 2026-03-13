@@ -1,24 +1,139 @@
-Prod wkid-ess shared services
-Name                                       Count
-----                                       -----
-google_iam_workload_identity_pool              1
-google_iam_workload_identity_pool_provider     1
-google_service_account_iam_member              5
+locals {
+  core_iam_profiles = {
+    "core-admin" = {
+       group = "group:gcp-core-admin@${local.group_domain}"
+       roles = [
+         "roles/resourcemanager.folderAdmin",
+         "roles/viewer",
+        #  lookup(local._custom_role_map, "spgiHierarchyViewer", "")
+       ]
+    },
+    "core-viewer" = {
+       group = "group:gcp-core-readers@${local.group_domain}"
+       roles = [
+         "roles/viewer"
+       ]
+    }
+  }
+
+  # _custom_role_map = {
+  #   for k, v in data.google_iam_role.custom_roles : k => v.name
+  # }
+}
 
 
-
-Non-prod-core shared services
-
-Name                              Count
-----                              -----
-google_compute_firewall              13
-google_network_connectivity_spoke     2
+locals
 
 
-Non-prod-core shared services-wkid
+locals {
+  folder_config = yamldecode(file("core.yaml"))
+  group_domain  = "altostrat.com"
 
-Name                                       Count
-----                                       -----
-google_iam_workload_identity_pool              1
-google_iam_workload_identity_pool_provider     1
-google_service_account_iam_member              5
+
+  all_folders_flat = flatten([
+    for l1 in local.folder_config.folders : concat(
+      # 1. Level 1 Node
+      [{
+        path   = l1.name
+        bu     = lookup(l1, "bu_short_name", null)
+        enable = lookup(l1, "enable_gcp_groups", false)
+        iam_groups = lookup(l1, "iam_groups", [])
+      }],
+      # 2. Level 2 Children (Flattened)
+      flatten([
+        for l2 in lookup(l1, "sub_folders", []) : concat(
+          [{
+            path   = "${l1.name}/${l2.name}"
+            bu     = lookup(l2, "bu_short_name", null)
+            enable = lookup(l2, "enable_gcp_groups", false)
+            iam_groups = lookup(l2, "iam_groups", [])
+          }],
+          # 3. Level 3 Children
+          flatten([
+            for l3 in lookup(l2, "sub_folders", []) : concat(
+              [{
+                path   = "${l1.name}/${l2.name}/${l3.name}"
+                bu     = lookup(l3, "bu_short_name", null)
+                enable = lookup(l3, "enable_gcp_groups", false)
+                iam_groups = lookup(l3, "iam_groups", [])
+              }],
+              # 4. Level 4 Children
+              flatten([
+                for l4 in lookup(l3, "sub_folders", []) : concat(
+                  [{
+                    path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}"
+                    bu     = lookup(l4, "bu_short_name", null)
+                    enable = lookup(l4, "enable_gcp_groups", false)
+                    iam_groups = lookup(l4, "iam_groups", [])
+                  }],
+                  flatten([
+                    for l5 in lookup(l4, "sub_folders", []) : concat(
+                      [{
+                        path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}"
+                        bu     = lookup(l5, "bu_short_name", null)
+                        enable = lookup(l5, "enable_gcp_groups", false)
+                        iam_groups = lookup(l5, "iam_groups", [])
+                      }],
+                      # 6. Level 6 Children
+                      flatten([
+                        for l6 in lookup(l5, "sub_folders", []) : concat(
+                          [{
+                            path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}/${l6.name}"
+                            bu     = lookup(l6, "bu_short_name", null)
+                            enable = lookup(l6, "enable_gcp_groups", false)
+                            iam_groups = lookup(l6, "iam_groups", [])
+                          }],
+                          # 7. Level 7 Children
+                          flatten([
+                            for l7 in lookup(l6, "sub_folders", []) : [{
+                              path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}/${l6.name}/${l7.name}"
+                              bu     = lookup(l7, "bu_short_name", null)
+                              enable = lookup(l7, "enable_gcp_groups", false)
+                              iam_groups = lookup(l7, "iam_groups", [])
+                            }]
+                          ])
+                        )
+                      ])
+                    )
+                  ])
+                )
+              ])
+            )
+          ])
+        )
+      ])
+    )
+  ])
+
+
+  active_bu_folders = [
+    for f in local.all_folders_flat : f
+    if f.enable == true
+  ]
+
+  _bu_iam_flattened = flatten([
+    for folder in local.active_bu_folders : [
+      for group_key in lookup(folder, "iam_groups", []) : [
+        for role in local.core_iam_profiles[group_key].roles : {
+          path   = folder.path
+          member = local.core_iam_profiles[group_key].group
+          role   = role
+        }
+      ]
+    ]
+  ])
+
+  _bu_bindings_by_path = {
+    for item in local._bu_iam_flattened :
+    item.path => item...
+  }
+
+  bu_map = {
+    for path, items in local._bu_bindings_by_path : path => {
+      for item in items :
+      item.role => item.member...
+    }
+  }
+}
+
+
