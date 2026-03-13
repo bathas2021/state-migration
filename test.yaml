@@ -1,1 +1,24 @@
-(Get-Content terraform.tfstate | ConvertFrom-Json).resources | Group-Object type | Select-Object Name, Count
+Prod wkid-ess shared services
+Name                                       Count
+----                                       -----
+google_iam_workload_identity_pool              1
+google_iam_workload_identity_pool_provider     1
+google_service_account_iam_member              5
+
+
+
+Non-prod-core shared services
+
+Name                              Count
+----                              -----
+google_compute_firewall              13
+google_network_connectivity_spoke     2
+
+
+Non-prod-core shared services-wkid
+
+Name                                       Count
+----                                       -----
+google_iam_workload_identity_pool              1
+google_iam_workload_identity_pool_provider     1
+google_service_account_iam_member              5
