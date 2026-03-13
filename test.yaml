@@ -76,147 +76,147 @@
                     "sensitive_attributes": [],
                     "identity_schema_version": 0,
                     "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
+                }
+            ]
+        },
+        {
+            "module": "module.folder_hierarchy_core",
+            "mode": "managed",
+            "type": "google_folder",
+            "name": "folder_l3",
+            "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+            "instances": [
+                {
+                    "index_key": "spgi-root/spgi-ess/nonprod",
+                    "schema_version": 0,
+                    "attributes": {
+                        "create_time": "2023-03-02T10:09:16.498Z",
+                        "display_name": "nonprod",
+                        "folder_id": "506239018180",
+                        "id": "folders/506239018180",
+                        "lifecycle_state": "ACTIVE",
+                        "name": "folders/506239018180",
+                        "parent": "folders/751786122415",
+                        "timeouts": null
+                    },
+                    "sensitive_attributes": [],
+                    "identity_schema_version": 0,
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfX0="
                 },
                 {
-                    "module": "module.folder_hierarchy_core",
-                    "mode": "managed",
-                    "type": "google_folder",
-                    "name": "folder_l3",
-                    "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
-                    "instances": [
-                        {
-                            "index_key": "spgi-root/spgi-ess/nonprod",
-                            "schema_version": 0,
-                            "attributes": {
-                                "create_time": "2023-03-02T10:09:16.498Z",
-                                "display_name": "nonprod",
-                                "folder_id": "506239018180",
-                                "id": "folders/506239018180",
-                                "lifecycle_state": "ACTIVE",
-                                "name": "folders/506239018180",
-                                "parent": "folders/751786122415",
-                                "timeouts": null
-                            },
-                            "sensitive_attributes": [],
-                            "identity_schema_version": 0,
-                            "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfX0="
-                        },
-                        {
-                            "index_key": "spgi-root/spgi-ess/prod",
-                            "schema_version": 0,
-                            "attributes": {
-                                "create_time": "2022-11-22T13:49:24.711Z",
-                                "display_name": "prod",
-                                "folder_id": "107677334636",
-                                "id": "folders/107677334636",
-                                "lifecycle_state": "ACTIVE",
-                                "name": "folders/107677334636",
-                                "parent": "folders/751786122415",
-                                "timeouts": {
-                                    "create": null,
-                                    "delete": null,
-                                    "read": null,
-                                    "update": null
-                                }
-                            },
-                            "sensitive_attributes": [],
-                            "identity_schema_version": 0,
-                            "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
+                    "index_key": "spgi-root/spgi-ess/prod",
+                    "schema_version": 0,
+                    "attributes": {
+                        "create_time": "2022-11-22T13:49:24.711Z",
+                        "display_name": "prod",
+                        "folder_id": "107677334636",
+                        "id": "folders/107677334636",
+                        "lifecycle_state": "ACTIVE",
+                        "name": "folders/107677334636",
+                        "parent": "folders/751786122415",
+                        "timeouts": {
+                            "create": null,
+                            "delete": null,
+                            "read": null,
+                            "update": null
                         }
-                    ]
+                    },
+                    "sensitive_attributes": [],
+                    "identity_schema_version": 0,
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
+                }
+            ]
+        },
+        {
+            "module": "module.folder_hierarchy_core",
+            "mode": "managed",
+            "type": "google_tags_tag_binding",
+            "name": "bindings",
+            "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
+            "instances": [
+                {
+                    "index_key": "spgi-root/Datadog",
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/130437003614",
+                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/130437003614",
+                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
+                        "tag_value": "tagValues/130437003614",
+                        "timeouts": null
+                    },
+                    "sensitive_attributes": [],
+                    "identity_schema_version": 0,
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
                 },
                 {
-                    "module": "module.folder_hierarchy_core",
-                    "mode": "managed",
-                    "type": "google_tags_tag_binding",
-                    "name": "bindings",
-                    "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
-                    "instances": [
-                        {
-                            "index_key": "spgi-root/Datadog",
-                            "schema_version": 0,
-                            "attributes": {
-                                "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/130437003614",
-                                "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/130437003614",
-                                "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                                "tag_value": "tagValues/130437003614",
-                                "timeouts": null
-                            },
-                            "sensitive_attributes": [],
-                            "identity_schema_version": 0,
-                            "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                        },
-                        {
-                            "index_key": "spgi-root/Environment",
-                            "schema_version": 0,
-                            "attributes": {
-                                "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/37120477669",
-                                "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/37120477669",
-                                "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                                "tag_value": "tagValues/37120477669",
-                                "timeouts": null
-                            },
-                            "sensitive_attributes": [],
-                            "identity_schema_version": 0,
-                            "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                        },
-                        {
-                            "index_key": "spgi-root/MaintenanceWindow",
-                            "schema_version": 0,
-                            "attributes": {
-                                "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/588977169522",
-                                "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/588977169522",
-                                "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                                "tag_value": "tagValues/588977169522",
-                                "timeouts": null
-                            },
-                            "sensitive_attributes": [],
-                            "identity_schema_version": 0,
-                            "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                        },
-                        {
-                            "index_key": "spgi-root/Owner",
-                            "schema_version": 0,
-                            "attributes": {
-                                "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/961929547177",
-                                "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/961929547177",
-                                "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                                "tag_value": "tagValues/961929547177",
-                                "timeouts": null
-                            },
-                            "sensitive_attributes": [],
-                            "identity_schema_version": 0,
-                            "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                        },
-                        {
-                            "index_key": "spgi-root/SupportGroup",
-                            "schema_version": 0,
-                            "attributes": {
-                                "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/242734982430",
-                                "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/242734982430",
-                                "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                                "tag_value": "tagValues/242734982430",
-                                "timeouts": null
-                            },
-                            "sensitive_attributes": [],
-                            "identity_schema_version": 0,
-                            "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                        },
-                        {
-                            "index_key": "spgi-root/UsedFor",
-                            "schema_version": 0,
-                            "attributes": {
-                                "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/467695050309",
-                                "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/467695050309",
-                                "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                                "tag_value": "tagValues/467695050309",
-                                "timeouts": null
-                            },
-                            "sensitive_attributes": [],
-                            "identity_schema_version": 0,
-                            "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                        }
-                    ]
+                    "index_key": "spgi-root/Environment",
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/37120477669",
+                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/37120477669",
+                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
+                        "tag_value": "tagValues/37120477669",
+                        "timeouts": null
+                    },
+                    "sensitive_attributes": [],
+                    "identity_schema_version": 0,
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
+                },
+                {
+                    "index_key": "spgi-root/MaintenanceWindow",
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/588977169522",
+                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/588977169522",
+                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
+                        "tag_value": "tagValues/588977169522",
+                        "timeouts": null
+                    },
+                    "sensitive_attributes": [],
+                    "identity_schema_version": 0,
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
+                },
+                {
+                    "index_key": "spgi-root/Owner",
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/961929547177",
+                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/961929547177",
+                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
+                        "tag_value": "tagValues/961929547177",
+                        "timeouts": null
+                    },
+                    "sensitive_attributes": [],
+                    "identity_schema_version": 0,
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
+                },
+                {
+                    "index_key": "spgi-root/SupportGroup",
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/242734982430",
+                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/242734982430",
+                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
+                        "tag_value": "tagValues/242734982430",
+                        "timeouts": null
+                    },
+                    "sensitive_attributes": [],
+                    "identity_schema_version": 0,
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
+                },
+                {
+                    "index_key": "spgi-root/UsedFor",
+                    "schema_version": 0,
+                    "attributes": {
+                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/467695050309",
+                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/467695050309",
+                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
+                        "tag_value": "tagValues/467695050309",
+                        "timeouts": null
+                    },
+                    "sensitive_attributes": [],
+                    "identity_schema_version": 0,
+                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
                 },
                 {
                     "index_key": "spgi-root/spgi-ess/nonprod/Environment",
