@@ -1,0 +1,13 @@
+Error reading source state ".\\foldr.tfstate": 11 problems:
+
+- Duplicate resource instance in state: Instance module.folder_hierarchy_core.google_folder.folder_l2 appears multiple times in the state file.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
+- Invalid address: A resource address is required here. The module path must be followed by a resource specification.
