@@ -1,733 +1,109 @@
-{
-    "version": 4,
-    "terraform_version": "1.14.5",
-    "serial": 117,
-    "lineage": "f455e7b1-5726-4c0a-7754-183fcf2482a9",
-    "outputs": {},
-    "resources": [
-        {
-            "module": "module.folder_hierarchy_core",
-            "mode": "managed",
-            "type": "google_folder",
-            "name": "folder_l1",
-            "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
-            "instances": [
-                {
-                    "index_key": "spgi-root",
-                    "schema_version": 0,
-                    "attributes": {
-                        "create_time": "2022-11-22T09:48:20.837Z",
-                        "display_name": "spgi-root",
-                        "folder_id": "289458319251",
-                        "id": "folders/289458319251",
-                        "lifecycle_state": "ACTIVE",
-                        "name": "folders/289458319251",
-                        "parent": "organizations/292095750786",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfX0="
-                }
-            ]
-        },
-        {
-            "module": "module.folder_hierarchy_core",
-            "mode": "managed",
-            "type": "google_folder",
-            "name": "folder_l2",
-            "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
-            "instances": [
-                {
-                    "index_key": "spgi-root/spgi-business-units",
-                    "schema_version": 0,
-                    "attributes": {
-                        "create_time": "2022-11-21T11:45:00.658Z",
-                        "display_name": "spgi-business-units",
-                        "folder_id": "669737209768",
-                        "id": "folders/669737209768",
-                        "lifecycle_state": "ACTIVE",
-                        "name": "folders/669737209768",
-                        "parent": "folders/289458319251",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfX0="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess",
-                    "schema_version": 0,
-                    "attributes": {
-                        "create_time": "2022-11-21T11:45:00.356Z",
-                        "display_name": "spgi-ess",
-                        "folder_id": "751786122415",
-                        "id": "folders/751786122415",
-                        "lifecycle_state": "ACTIVE",
-                        "name": "folders/751786122415",
-                        "parent": "folders/289458319251",
-                        "timeouts": {
-                            "create": null,
-                            "delete": null,
-                            "read": null,
-                            "update": null
-                        }
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
-                }
-            ]
-        },
-        {
-            "module": "module.folder_hierarchy_core",
-            "mode": "managed",
-            "type": "google_folder",
-            "name": "folder_l3",
-            "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
-            "instances": [
-                {
-                    "index_key": "spgi-root/spgi-ess/nonprod",
-                    "schema_version": 0,
-                    "attributes": {
-                        "create_time": "2023-03-02T10:09:16.498Z",
-                        "display_name": "nonprod",
-                        "folder_id": "506239018180",
-                        "id": "folders/506239018180",
-                        "lifecycle_state": "ACTIVE",
-                        "name": "folders/506239018180",
-                        "parent": "folders/751786122415",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfX0="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/prod",
-                    "schema_version": 0,
-                    "attributes": {
-                        "create_time": "2022-11-22T13:49:24.711Z",
-                        "display_name": "prod",
-                        "folder_id": "107677334636",
-                        "id": "folders/107677334636",
-                        "lifecycle_state": "ACTIVE",
-                        "name": "folders/107677334636",
-                        "parent": "folders/751786122415",
-                        "timeouts": {
-                            "create": null,
-                            "delete": null,
-                            "read": null,
-                            "update": null
-                        }
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoyNDAwMDAwMDAwMDAsImRlbGV0ZSI6MjQwMDAwMDAwMDAwLCJyZWFkIjoyNDAwMDAwMDAwMDAsInVwZGF0ZSI6MjQwMDAwMDAwMDAwfSwic2NoZW1hX3ZlcnNpb24iOiIwIn0="
-                }
-            ]
-        },
-        {
-            "module": "module.folder_hierarchy_core",
-            "mode": "managed",
-            "type": "google_tags_tag_binding",
-            "name": "bindings",
-            "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
-            "instances": [
-                {
-                    "index_key": "spgi-root/Datadog",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/130437003614",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/130437003614",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                        "tag_value": "tagValues/130437003614",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/Environment",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/37120477669",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/37120477669",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                        "tag_value": "tagValues/37120477669",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/MaintenanceWindow",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/588977169522",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/588977169522",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                        "tag_value": "tagValues/588977169522",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/Owner",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/961929547177",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/961929547177",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                        "tag_value": "tagValues/961929547177",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/SupportGroup",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/242734982430",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/242734982430",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                        "tag_value": "tagValues/242734982430",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/UsedFor",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/467695050309",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F289458319251/tagValues/467695050309",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/289458319251",
-                        "tag_value": "tagValues/467695050309",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/nonprod/Environment",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F506239018180/tagValues/284079814025",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F506239018180/tagValues/284079814025",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/506239018180",
-                        "tag_value": "tagValues/284079814025",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/nonprod/Owner",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F107677334636/tagValues/391436972009",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F107677334636/tagValues/391436972009",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/107677334636",
-                        "tag_value": "tagValues/391436972009",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/nonprod/shared-network/Enviroment",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F288344041660/tagValues/284079814025",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F288344041660/tagValues/284079814025",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/288344041660",
-                        "tag_value": "tagValues/284079814025",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/nonprod/shared-network/Owner",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F288344041660/tagValues/391436972009",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F288344041660/tagValues/391436972009",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/288344041660",
-                        "tag_value": "tagValues/391436972009",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/prod/Environment",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F107677334636/tagValues/934935871427",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F107677334636/tagValues/934935871427",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/107677334636",
-                        "tag_value": "tagValues/934935871427",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/prod/Owner",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F506239018180/tagValues/391436972009",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F506239018180/tagValues/391436972009",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/506239018180",
-                        "tag_value": "tagValues/391436972009",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/prod/shared-network/Enviroment",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F1068392187507/tagValues/934935871427",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F1068392187507/tagValues/934935871427",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/1068392187507",
-                        "tag_value": "tagValues/934935871427",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                },
-                {
-                    "index_key": "spgi-root/spgi-ess/prod/shared-network/Owner",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F1068392187507/tagValues/391436972009",
-                        "name": "%2F%2Fcloudresourcemanager.googleapis.com%2Ffolders%2F1068392187507/tagValues/391436972009",
-                        "parent": "//cloudresourcemanager.googleapis.com/folders/1068392187507",
-                        "tag_value": "tagValues/391436972009",
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDB9fQ=="
-                }
-            ]
-        },
-        {
-            "module": "module.org_policies_root_fldr",
-            "mode": "managed",
-            "type": "google_org_policy_policy",
-            "name": "default",
-            "provider": "provider[\"registry.terraform.io/hashicorp/google\"]",
-            "instances": [
-                {
-                    "index_key": "compute.requireVpcFlowLogs",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/compute.requireVpcFlowLogs",
-                        "name": "folders/289458319251/policies/compute.requireVpcFlowLogs",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CNuXgZ0GEODa3l4=",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "",
-                                        "enforce": "",
-                                        "values": [
-                                            {
-                                                "allowed_values": [
-                                                    "COMPREHENSIVE"
-                                                ],
-                                                "denied_values": []
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "update_time": "2022-12-19T11:32:43.198684Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19"
-                },
-                {
-                    "index_key": "compute.skipDefaultNetworkCreation",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/compute.skipDefaultNetworkCreation",
-                        "name": "folders/289458319251/policies/compute.skipDefaultNetworkCreation",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CNGWgZ0GEOipl7ED",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "",
-                                        "enforce": "TRUE",
-                                        "values": []
-                                    }
-                                ],
-                                "update_time": "2022-12-19T11:30:25.908449Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "compute.vmExternalIpAccess",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/compute.vmExternalIpAccess",
-                        "name": "folders/289458319251/policies/compute.vmExternalIpAccess",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CNuXgZ0GEJCTt40B",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "TRUE",
-                                        "enforce": "",
-                                        "values": []
-                                    }
-                                ],
-                                "update_time": "2022-12-19T11:32:43.296602Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "gcp.resourceLocations",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/gcp.resourceLocations",
-                        "name": "folders/289458319251/policies/gcp.resourceLocations",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CNy9y8kGEOCpyZ8C",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "",
-                                        "enforce": "",
-                                        "values": [
-                                            {
-                                                "allowed_values": [
-                                                    "in:us-locations",
-                                                    "in:eu-locations",
-                                                    "in:me-central2-locations",
-                                                    "in:me-central1-locations",
-                                                    "in:asia-east1-locations",
-                                                    "in:asia-southeast1-locations",
-                                                    "in:europe-west2-locations",
-                                                    "global"
-                                                ],
-                                                "denied_values": []
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "update_time": "2025-12-05T13:32:12.603084Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "gcp.restrictServiceUsage",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/gcp.restrictServiceUsage",
-                        "name": "folders/289458319251/policies/gcp.restrictServiceUsage",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CIXUt8IGEPC/3JQB",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "",
-                                        "enforce": "",
-                                        "values": [
-                                            {
-                                                "allowed_values": [],
-                                                "denied_values": [
-                                                    "aiplatform.googleapis.com"
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                ],
-                                "update_time": "2025-06-14T21:30:45.311894Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "iam.disableServiceAccountKeyCreation",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/iam.disableServiceAccountKeyCreation",
-                        "name": "folders/289458319251/policies/iam.disableServiceAccountKeyCreation",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CJmF0Z0GEIiPnsMD",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "",
-                                        "enforce": "FALSE",
-                                        "values": []
-                                    }
-                                ],
-                                "update_time": "2023-01-03T14:58:33.946309Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "resourcemanager.allowedExportDestinations",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/resourcemanager.allowedExportDestinations",
-                        "name": "folders/289458319251/policies/resourcemanager.allowedExportDestinations",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CJSHhKIGEMitkHA=",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "TRUE",
-                                        "condition": [],
-                                        "deny_all": "",
-                                        "enforce": "",
-                                        "values": []
-                                    }
-                                ],
-                                "update_time": "2023-04-20T09:19:16.235149Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "sql.restrictPublicIp",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/sql.restrictPublicIp",
-                        "name": "folders/289458319251/policies/sql.restrictPublicIp",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CNGWgZ0GEIj1uYUD",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "",
-                                        "enforce": "TRUE",
-                                        "values": []
-                                    }
-                                ],
-                                "update_time": "2022-12-19T11:30:25.816741Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "storage.publicAccessPrevention",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/storage.publicAccessPrevention",
-                        "name": "folders/289458319251/policies/storage.publicAccessPrevention",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CNuXgZ0GEMi6iI0B",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "",
-                                        "enforce": "TRUE",
-                                        "values": []
-                                    }
-                                ],
-                                "update_time": "2022-12-19T11:32:43.295837Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "vertexai.allowedGenAIModels",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/vertexai.allowedGenAIModels",
-                        "name": "folders/289458319251/policies/vertexai.allowedGenAIModels",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CIXUt8IGEPCilvQB",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "TRUE",
-                                        "enforce": "",
-                                        "values": []
-                                    }
-                                ],
-                                "update_time": "2025-06-14T21:30:45.512070Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                },
-                {
-                    "index_key": "vertexai.allowedModels",
-                    "schema_version": 0,
-                    "attributes": {
-                        "id": "folders/289458319251/policies/vertexai.allowedModels",
-                        "name": "folders/289458319251/policies/vertexai.allowedModels",
-                        "parent": "folders/289458319251",
-                        "spec": [
-                            {
-                                "etag": "CIXUt8IGEPDViPMB",
-                                "inherit_from_parent": false,
-                                "reset": false,
-                                "rules": [
-                                    {
-                                        "allow_all": "",
-                                        "condition": [],
-                                        "deny_all": "TRUE",
-                                        "enforce": "",
-                                        "values": []
-                                    }
-                                ],
-                                "update_time": "2025-06-14T21:30:45.509750Z"
-                            }
-                        ],
-                        "timeouts": null
-                    },
-                    "sensitive_attributes": [],
-                    "identity_schema_version": 0,
-                    "private": "eyJlMmJmYjczMC1lY2FhLTExZTYtOGY4OC0zNDM2M2JjN2M0YzAiOnsiY3JlYXRlIjoxMjAwMDAwMDAwMDAwLCJkZWxldGUiOjEyMDAwMDAwMDAwMDAsInVwZGF0ZSI6MTIwMDAwMDAwMDAwMH19",
-                    "dependencies": [
-                        "module.folder_hierarchy_core"
-                    ]
-                }
-            ]
+locals {
+  folder_config = yamldecode(file("nonprod.yaml"))
+  group_domain  = "altostrat.com"
+
+
+  all_folders_flat = flatten([
+    for l1 in local.folder_config.folders : concat(
+      # 1. Level 1 Node
+      [{
+        path   = l1.name
+        bu     = lookup(l1, "bu_short_name", null)
+        enable = lookup(l1, "enable_gcp_groups", false)
+      }],
+      # 2. Level 2 Children (Flattened)
+      flatten([
+        for l2 in lookup(l1, "sub_folders", []) : concat(
+          [{
+            path   = "${l1.name}/${l2.name}"
+            bu     = lookup(l2, "bu_short_name", null)
+            enable = lookup(l2, "enable_gcp_groups", false)
+          }],
+          # 3. Level 3 Children
+          flatten([
+            for l3 in lookup(l2, "sub_folders", []) : concat(
+              [{
+                path   = "${l1.name}/${l2.name}/${l3.name}"
+                bu     = lookup(l3, "bu_short_name", null)
+                enable = lookup(l3, "enable_gcp_groups", false)
+                env    = l3.name
+              }],
+              # 4. Level 4 Children
+              flatten([
+                for l4 in lookup(l3, "sub_folders", []) : concat(
+                  [{
+                    path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}"
+                    bu     = lookup(l4, "bu_short_name", null)
+                    enable = lookup(l4, "enable_gcp_groups", false)
+                    env    = l3.name
+                  }],
+                  flatten([
+                    for l5 in lookup(l4, "sub_folders", []) : concat(
+                      [{
+                        path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}"
+                        bu     = lookup(l5, "bu_short_name", null)
+                        enable = lookup(l5, "enable_gcp_groups", false)
+                        env    = l3.name
+                      }],
+                      # 6. Level 6 Children
+                      flatten([
+                        for l6 in lookup(l5, "sub_folders", []) : concat(
+                          [{
+                            path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}/${l6.name}"
+                            bu     = lookup(l6, "bu_short_name", null)
+                            enable = lookup(l6, "enable_gcp_groups", false)
+                            env    = l3.name
+                          }],
+                          # 7. Level 7 Children
+                          flatten([
+                            for l7 in lookup(l6, "sub_folders", []) : [{
+                              path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}/${l6.name}/${l7.name}"
+                              bu     = lookup(l7, "bu_short_name", null)
+                              enable = lookup(l7, "enable_gcp_groups", false)
+                              env    = l3.name
+                            }]
+                          ])
+                        )
+                      ])
+                    )
+                  ])
+                )
+              ])
+            )
+          ])
+        )
+      ])
+    )
+  ])
+
+
+  active_bu_folders = [
+    for f in local.all_folders_flat : f
+    if f.bu != null && f.enable == true && lookup(f, "env", "") == "nonprod"
+  ]
+
+  _bu_iam_flattened = flatten([
+    for folder in local.active_bu_folders : [
+      for group_tmpl, roles in local.bu_iam_template_by_group : [
+        for role in roles : {
+          path   = folder.path
+          member = replace(group_tmpl, "{bu}", folder.bu)
+          role   = role
         }
+      ]
     ]
+  ])
+
+  _bu_bindings_by_path = {
+    for item in local._bu_iam_flattened :
+    item.path => item...
+  }
+
+  bu_map = {
+    for path, items in local._bu_bindings_by_path : path => {
+      for item in items :
+      item.role => item.member...
+    }
+  }
 }
+
