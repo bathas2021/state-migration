@@ -1,6 +1,18 @@
+variable "collibra_sa_bindings" {
+  type = map(map(list(string)))
+  default = {
+    "spgi-root/spgi-business-units/poc" = {
+      "roles/bigquery.metadataViewer" = ["serviceAccount:collibra@x-mi-pc-data-mgmt-shared.iam.gserviceaccount.com"]
+      "roles/pubsub.viewer"           = ["serviceAccount:collibra@x-mi-pc-data-mgmt-shared.iam.gserviceaccount.com"]
+    }
+  }
+}
+
+
+
 locals {
-  folder_config = yamldecode(file("nonprod.yaml"))
-  group_domain  = "altostrat.com"
+  folder_config = yamldecode(file("./metadata.yaml"))
+  group_domain  = "spglobal.com"
 
 
   all_folders_flat = flatten([
@@ -9,7 +21,7 @@ locals {
       [{
         path   = l1.name
         bu     = lookup(l1, "bu_short_name", null)
-        enable = lookup(l1, "enable_gcp_groups", false)
+        enable = lookup(l1, "enable_gcp_groups", true)
       }],
       # 2. Level 2 Children (Flattened)
       flatten([
@@ -17,7 +29,7 @@ locals {
           [{
             path   = "${l1.name}/${l2.name}"
             bu     = lookup(l2, "bu_short_name", null)
-            enable = lookup(l2, "enable_gcp_groups", false)
+            enable = lookup(l2, "enable_gcp_groups", true)
           }],
           # 3. Level 3 Children
           flatten([
@@ -25,7 +37,7 @@ locals {
               [{
                 path   = "${l1.name}/${l2.name}/${l3.name}"
                 bu     = lookup(l3, "bu_short_name", null)
-                enable = lookup(l3, "enable_gcp_groups", false)
+                enable = lookup(l3, "enable_gcp_groups", true)
                 env    = l3.name
               }],
               # 4. Level 4 Children
@@ -34,15 +46,16 @@ locals {
                   [{
                     path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}"
                     bu     = lookup(l4, "bu_short_name", null)
-                    enable = lookup(l4, "enable_gcp_groups", false)
+                    enable = lookup(l4, "enable_gcp_groups", true)
                     env    = l3.name
                   }],
+                  # 5. Level 5 Children
                   flatten([
                     for l5 in lookup(l4, "sub_folders", []) : concat(
                       [{
                         path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}"
                         bu     = lookup(l5, "bu_short_name", null)
-                        enable = lookup(l5, "enable_gcp_groups", false)
+                        enable = lookup(l5, "enable_gcp_groups", true)
                         env    = l3.name
                       }],
                       # 6. Level 6 Children
@@ -51,15 +64,15 @@ locals {
                           [{
                             path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}/${l6.name}"
                             bu     = lookup(l6, "bu_short_name", null)
-                            enable = lookup(l6, "enable_gcp_groups", false)
+                            enable = lookup(l6, "enable_gcp_groups", true)
                             env    = l3.name
                           }],
-                          # 7. Level 7 Children
+                          # 7. Level 7 Children (Final level, no concat needed inside)
                           flatten([
                             for l7 in lookup(l6, "sub_folders", []) : [{
                               path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}/${l6.name}/${l7.name}"
                               bu     = lookup(l7, "bu_short_name", null)
-                              enable = lookup(l7, "enable_gcp_groups", false)
+                              enable = lookup(l7, "enable_gcp_groups", true)
                               env    = l3.name
                             }]
                           ])
@@ -79,7 +92,7 @@ locals {
 
   active_bu_folders = [
     for f in local.all_folders_flat : f
-    if f.bu != null && f.enable == true && lookup(f, "env", "") == "nonprod"
+    if f.bu != null && f.enable == true
   ]
 
   _bu_iam_flattened = flatten([
@@ -87,7 +100,7 @@ locals {
       for group_tmpl, roles in local.bu_iam_template_by_group : [
         for role in roles : {
           path   = folder.path
-          member = replace(group_tmpl, "{bu}", folder.bu)
+          member = replace(replace(group_tmpl, "{bu}", folder.bu), "{env}", folder.env)
           role   = role
         }
       ]
@@ -99,11 +112,19 @@ locals {
     item.path => item...
   }
 
-  bu_map = {
+  _bu_map = {
     for path, items in local._bu_bindings_by_path : path => {
       for item in items :
       item.role => item.member...
     }
   }
+
+  bu_iam_map = merge(local._bu_map, var.collibra_sa_bindings)
 }
 
+
+module "folder_hierarchy" {
+  source              = "git::https://github.com/Digital-Technology-Services/terraform-gcp-folders.git?ref=v1.2.0"
+  folder_config       = local.folder_config
+  folder_iam_bindings = local.bu_iam_map
+}
