@@ -1,311 +1,54 @@
 locals {
-  folder_config = yamldecode(file("./nonprod.yaml"))
-  group_domain  = "spglobal.com"
+  config_nonprod = yamldecode(file("../../folders/nonprod/nonprod.yaml"))
+  config_prod    = yamldecode(file("../../folders/prod/prod.yaml"))
 
+  billing_config = yamldecode(file("./config.yaml"))
 
-  # 1. FLATTEN FOLDER CONFIGURATION
-  # Flattens the hierarchical folder creation list (from nonprod.yaml) into a single list.
-  # Enables path construction (e.g., nonprod/spgi-corp) by nesting loops up to level 7.
-  all_folders_flat = flatten([
-    for l1 in local.folder_config.folders : concat(
-      # 1. Level 1 Node
-      [{
-        path   = l1.name
-        bu     = lookup(l1, "bu_short_name", null)
-        enable = lookup(l1, "enable_gcp_groups", true)
-      }],
-      # 2. Level 2 Children (Flattened)
-      flatten([
-        for l2 in lookup(l1, "sub_folders", []) : concat(
-          [{
-            path   = "${l1.name}/${l2.name}"
-            bu     = lookup(l2, "bu_short_name", null)
-            enable = lookup(l2, "enable_gcp_groups", true)
-          }],
-          # 3. Level 3 Children
-          flatten([
-            for l3 in lookup(l2, "sub_folders", []) : concat(
-              [{
-                path   = "${l1.name}/${l2.name}/${l3.name}"
-                bu     = lookup(l3, "bu_short_name", null)
-                enable = lookup(l3, "enable_gcp_groups", true)
-                env    = l3.name
-              }],
-              # 4. Level 4 Children
-              flatten([
-                for l4 in lookup(l3, "sub_folders", []) : concat(
-                  [{
-                    path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}"
-                    bu     = lookup(l4, "bu_short_name", null)
-                    enable = lookup(l4, "enable_gcp_groups", true)
-                    env    = l3.name
-                  }],
-                  # 5. Level 5 Children
-                  flatten([
-                    for l5 in lookup(l4, "sub_folders", []) : concat(
-                      [{
-                        path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}"
-                        bu     = lookup(l5, "bu_short_name", null)
-                        enable = lookup(l5, "enable_gcp_groups", true)
-                        env    = l3.name
-                      }],
-                      # 6. Level 6 Children
-                      flatten([
-                        for l6 in lookup(l5, "sub_folders", []) : concat(
-                          [{
-                            path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}/${l6.name}"
-                            bu     = lookup(l6, "bu_short_name", null)
-                            enable = lookup(l6, "enable_gcp_groups", true)
-                            env    = l3.name
-                          }],
-                          # 7. Level 7 Children (Final level, no concat needed inside)
-                          flatten([
-                            for l7 in lookup(l6, "sub_folders", []) : [{
-                              path   = "${l1.name}/${l2.name}/${l3.name}/${l4.name}/${l5.name}/${l6.name}/${l7.name}"
-                              bu     = lookup(l7, "bu_short_name", null)
-                              enable = lookup(l7, "enable_gcp_groups", true)
-                              env    = l3.name
-                            }]
-                          ])
-                        )
-                      ])
-                    )
-                  ])
-                )
-              ])
-            )
-          ])
-        )
-      ])
-    )
-  ])
+  # Combined Level 1 environment folders
+  _env_folders = concat(local.config_nonprod.folders, local.config_prod.folders)
 
-
-  # 2. FILTER BU FOLDERS
-  # Selects only folders that have a Business Unit (bu) specified and are enabled for group creation.
-  active_bu_folders = [
-    for f in local.all_folders_flat : f
-    if f.bu != null && f.enable == true
-  ]
-
-  # 3. EXPAND IAM BINDINGS (GROUPS)
-  # Crosses folders with groups from `var.bu_iam_group_roles`.
-  # Combines group suffix to form member e.g., group:gcp-corp-nonprod-superadmin@...
-  # Checks if role requires lookup against dynamic `_custom_role_map`.
-  _bu_iam_flattened = flatten([
-    for folder in local.active_bu_folders : [
-      for suffix, roles in var.bu_iam_group_roles : [
-        for role in roles : {
-          path   = folder.path
-          member = "group:gcp-${folder.bu}-${folder.env}-${suffix}@${local.group_domain}"
-          role   = can(regex("^roles/", role)) ? role : lookup(local._custom_role_map, role, "")
-        }
-      ]
+  all_bu_folders = flatten([
+    for env in local._env_folders : [
+      for bu in lookup(env, "sub_folders", []) : {
+        env           = env.name
+        bu_short_name = lookup(bu, "bu_short_name", "")
+      } if can(bu.bu_short_name) && lookup(env, "enable_gcp_groups", true) == true && lookup(bu, "enable_gcp_groups", true) == true
     ]
   ])
 
-  # 4. GROUP BY PATH
-  # Converts the expanded IAM list into a structure indexed by Folder Path.
-  _bu_bindings_by_path = {
-    for item in local._bu_iam_flattened :
-    item.path => item...
-  }
-
-  # 5. ORGANIZE BY ROLE
-  # Transforms grouped items into `path => role => list_of_members` expected by standard modules.
-  _bu_map = {
-    for path, items in local._bu_bindings_by_path : path => {
-      for item in items :
-      item.role => item.member...
-    }
-  }
-
-  # 6. MERGE SA BINDINGS
-  # Integrates statically defined SA bindings (from variables.tf) into the generated group bindings.
-  bu_iam_map = merge(local._bu_map, var.collibra_sa_bindings)
-  _custom_role_map = {
-    for k, v in data.google_iam_role.custom_roles : k => v.name
-  }
-}
-
-
-
-
-variable "collibra_sa_bindings" {
-  type = map(map(list(string)))
-  default = {
-    "nonprod/spgi-mi" = {
-      "roles/bigquery.metadataViewer" = ["serviceAccount:collibra@x-mi-pc-data-mgmt-shared.iam.gserviceaccount.com"]
-      "roles/pubsub.viewer"           = ["serviceAccount:collibra@x-mi-pc-data-mgmt-shared.iam.gserviceaccount.com"]
-    }
-  }
-}
-
-variable "bu_iam_group_roles" {
-  type        = map(list(string))
-  description = "Map of group suffixes to list of roles (standard as is, custom by role name string)."
-  default = {
-    "superadmin" = [
-      "roles/billing.projectManager",
-      "roles/cloudkms.admin",
-      "roles/essentialcontacts.admin",
-      "roles/iam.serviceAccountAdmin",
-      "roles/iam.serviceAccountUser",
-      "roles/compute.admin",
-      "roles/container.clusterAdmin",
-      "roles/container.admin",
-      "roles/monitoring.notificationChannelEditor",
-      "roles/resourcemanager.folderAdmin",
-      "roles/resourcemanager.lienModifier",
-      "roles/resourcemanager.projectCreator",
-      "roles/resourcemanager.projectDeletor",
-      "roles/resourcemanager.projectIamAdmin",
-      "roles/resourcemanager.projectMover",
-      "roles/resourcemanager.tagUser",
-      "roles/serviceusage.serviceUsageAdmin",
-      "roles/storage.admin",
-      "roles/iam.workloadIdentityPoolAdmin",
-      "roles/compute.networkAdmin",
-      "roles/dns.admin",
-      "roles/browser",
-      "spgiHierarchyViewer"
-    ],
-    "readonly" = [
-      "roles/viewer",
-      "roles/browser"
-    ],
-    "auditor" = [
-      "roles/cloudasset.viewer",
-      "roles/logging.viewer",
-      "roles/browser"
-    ],
-    "securityresponder" = [
-      "roles/owner",
-      "roles/browser"
-    ],
-    "cloudarchitect" = [
-      "roles/viewer",
-      "spgiComputeEditor",
-      "spgiApiGatewayEditor",
-      "roles/run.developer",
-      "roles/container.developer",
-      "roles/ml.developer",
-      "roles/cloudfunctions.developer",
-      "roles/appengine.appAdmin",
-      "roles/pubsub.editor",
-      "roles/pubsublite.editor",
-      "roles/cloudtasks.enqueuer",
-      "roles/cloudtasks.taskDeleter",
-      "roles/cloudtasks.taskRunner",
-      "roles/cloudtasks.viewer",
-      "roles/servicemanagement.quotaViewer",
-      "roles/browser",
-      "spgiComputeSecurityEditor",
-      "roles/compute.networkAdmin",
-      "roles/dns.admin",
-      "roles/logging.viewer",
-      "roles/appengine.appViewer",
-      "roles/storage.admin",
-      "roles/cloudsql.admin",
-      "roles/firebasedatabase.admin",
-      "roles/spanner.admin",
-      "roles/compute.InstanceAdmin.v1",
-      "roles/datamigration.admin",
-      "roles/certificatemanager.viewer",
-      "roles/logging.viewer",
-      "roles/monitoring.viewer",
-      "roles/source.writer",
-      "roles/cloudbuild.builds.editor",
-      "roles/clouddeploy.admin",
-      "roles/cloudfunctions.admin",
-      "roles/cloudtasks.admin",
-      "roles/cloudkms.cryptoOperator",
-      "roles/bigtable.admin",
-      "roles/bigquery.admin"
-    ],
-    "datascientist" = [
-      "spgiCloudFusionEditor",
-      "spgiDataCatalogEditor",
-      "spgiBigQueryEditor",
-      "spgiStorageEditor",
-      "spgiBigTableEditor",
-      "spgiSpannerEditor",
-      "spgiFirebaseEditor",
-      "roles/pubsub.editor",
-      "roles/pubsublite.editor",
-      "roles/dataproc.editor",
-      "roles/dataflex.editor",
-      "roles/dataflow.developer",
-      "roles/aiplatform.user",
-      "roles/automl.editor",
-      "roles/composer.user",
-      "roles/cloudsql.editor",
-      "roles/browser"
-    ],
-    "billingadministrator" = [
-      "spgiBillingViewer",
-      "roles/browser"
-    ],
-    "networkadministrator" = [
-      "spgiComputeSecurityEditor",
-      "roles/compute.networkAdmin",
-      "roles/dns.admin",
-      "roles/logging.viewer",
-      "roles/appengine.appViewer",
-      "roles/browser"
-    ],
-    "developer" = [
-      "spgiComputeEditor",
-      "spgiApiGatewayEditor",
-      "roles/run.developer",
-      "roles/container.developer",
-      "roles/ml.developer",
-      "roles/cloudfunctions.developer",
-      "roles/appengine.appAdmin",
-      "roles/pubsub.editor",
-      "roles/pubsublite.editor",
-      "roles/cloudtasks.enqueuer",
-      "roles/cloudtasks.taskDeleter",
-      "roles/cloudtasks.taskRunner",
-      "roles/cloudtasks.viewer",
-      "roles/servicemanagement.quotaViewer",
-      "roles/browser"
-    ],
-    "levelonesupport" = [
-      "spgiLevelOne",
-      "roles/browser"
-    ],
-    "leveltwosupport" = [
-      "spgiLevelOne",
-      "spgiComputeEditor",
-      "spgiStorageEditor",
-      "spgiLoadBalancerEditor",
-      "roles/cloudsql.editor",
-      "roles/monitoring.editor",
-      "roles/dns.admin",
-      "roles/logging.viewer",
-      "roles/browser"
-    ],
-    "databaseadministrator" = [
-      "roles/storage.admin",
-      "roles/cloudsql.admin",
-      "roles/firebasedatabase.admin",
-      "roles/spanner.admin",
-      "roles/compute.InstanceAdmin.v1",
-      "roles/datamigration.admin",
-      "roles/certificatemanager.viewer",
-      "roles/logging.viewer",
-      "roles/monitoring.viewer",
-      "roles/source.writer",
-      "roles/cloudbuild.builds.editor",
-      "roles/clouddeploy.admin",
-      "roles/cloudfunctions.admin",
-      "roles/cloudtasks.admin",
-      "roles/cloudkms.cryptoOperator",
-      "roles/bigtable.admin",
-      "roles/bigquery.admin",
-      "roles/browser"
+  dynamic_groups_flattened = flatten([
+    for item in local.all_bu_folders : [
+      for gcp_group, role in local.billing_config.group_iam_permissions : {
+        billing_account = var.billing_account
+        member          = "group:gcp-${item.bu_short_name}-${item.env}-${gcp_group}@spglobal.com"
+        role            = role
+      }
     ]
-  }
-}
+  ])
 
+  var_iam_flattened = flatten([
+    for role, members in local.billing_config.billing_user_iam_permissions : [
+      for member in members : {
+        billing_account = var.billing_account
+        role            = role
+        member          = member
+      }
+    ]
+  ])
+
+  service_account_iam_flattened = flatten([
+    for nickname, details in local.billing_config.service_account_details : [
+      for role in details.roles : { # Reusing the roles defined INSIDE the object
+        billing_account = details.billing_account_id
+        member          = "serviceAccount:${details.service_account_email}"
+        role            = role
+      }
+    ]
+  ])
+
+  billing_iam_map = merge(
+    { for item in local.dynamic_groups_flattened : "${item.billing_account}-${item.member}-${item.role}" => item },
+    { for item in local.var_iam_flattened : "${item.billing_account}-${item.member}-${item.role}" => item },
+    { for item in local.service_account_iam_flattened : "${item.billing_account}-${item.member}-${item.role}" => item }
+  )
+}
